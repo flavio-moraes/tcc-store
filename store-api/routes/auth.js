@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
+const jwt = require("jsonwebtoken");
 
 //Registrar um novo usuário
 router.post("/register", async (req, res) => {
@@ -40,9 +41,20 @@ router.post("/login", async (req, res) => {
             return;
         }
 
+        //Token de acesso fornecido ao cliente após o login para verificar se as requisições pertencem a ele
+        const accessToken = jwt.sign(
+            {
+                id: user._id,
+                isAdmin: user.isAdmin
+            },
+            process.env.JWT_SEC,
+            {expiresIn: "3d"}
+        );
+
         //Desmembrar o user para retirar o password e mandar na resposta o objeto sem essa informação
         const {password, ...withoutPass} = user._doc;
-        res.status(200).json(withoutPass);
+        //Juntar o withoutPass e o accessToken num objeto e enviar na resposta
+        res.status(200).json({...withoutPass, accessToken});
     } catch (err) {
         res.status(500).json(err);
     }
