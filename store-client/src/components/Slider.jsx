@@ -1,6 +1,7 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
+import { useState } from "react";
 import styled from "styled-components"
-
+import {slideItems, sliderItems} from "../data"
 
 const Container = styled.div`
     width: 100%;
@@ -25,13 +26,15 @@ const Arrow  = styled.div`
     bottom: 0;
     margin: auto;
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.33;
+    z-index: 2;
 `;
 
 const Wrapper = styled.div`
     height: 100%;
     display: flex;
-    transform: translateX(0vw);
+    transition: all 1.5s ease;
+    transform: translateX(${props=>props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
@@ -76,9 +79,15 @@ const Button = styled.button`
 
 
 const Slider = () => {
+    const [slideIndex, setSlideIndex] = useState(0);
 
     const handleClick = (direction) => {
-
+        if (direction === "left") {
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+        }
+        else {
+            setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+        }
     };
 
     return (
@@ -86,37 +95,19 @@ const Slider = () => {
             <Arrow side="left" onClick={()=>handleClick("left")}>
                 <ArrowLeftOutlined/>
             </Arrow>
-            <Wrapper>
-                <Slide bg="f5fafd">
-                    <ImgContainer>
-                        <Image src=" https://source.unsplash.com/random/200x200"/>
-                    </ImgContainer>
-                    <InfoContainer>
-                        <Title>TEMPORADA OUTONO-INVERNO</Title>
-                        <Desc>Confira as novas ofertas da temporada!</Desc>
-                        <Button>VER PRODUTOS</Button>
-                    </InfoContainer>
-                </Slide>
-                <Slide bg="fcf1ed">
-                    <ImgContainer>
-                        <Image src=" https://source.unsplash.com/random/200x200?id=1"/>
-                    </ImgContainer>
-                    <InfoContainer>
-                        <Title>MAIS VENDIDOS</Title>
-                        <Desc>Conheça os produtos mais populares do site!</Desc>
-                        <Button>VER PRODUTOS</Button>
-                    </InfoContainer>
-                </Slide>
-                <Slide bg="fbf0f4">
-                    <ImgContainer>
-                        <Image src=" https://source.unsplash.com/random/200x200?id=2"/>
-                    </ImgContainer>
-                    <InfoContainer>
-                        <Title>FRETE GRÁTIS</Title>
-                        <Desc>Obtenha frete grátis nas compras acima de R$ 100.</Desc>
-                        <Button>VER PRODUTOS</Button>
-                    </InfoContainer>
-                </Slide>
+            <Wrapper slideIndex={slideIndex}>
+                {sliderItems.map((item) => (
+                    <Slide bg={item.bg}>
+                        <ImgContainer>
+                            <Image src={item.img}/>
+                        </ImgContainer>
+                        <InfoContainer>
+                            <Title>{item.title}</Title>
+                            <Desc>{item.desc}</Desc>
+                            <Button>VER PRODUTOS</Button>
+                        </InfoContainer>
+                    </Slide>
+                ))}
             </Wrapper>
             <Arrow side="right" onClick={()=>handleClick("right")}>
                 <ArrowRightOutlined/>

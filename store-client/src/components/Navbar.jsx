@@ -15,11 +15,13 @@ const Wrapper = styled.div`
 `;
 const Left = styled.div`
     flex: 1;
-    text-align: center;
+    text-align: left;
+    padding-left: 10px;
 `;
 
 const Logo = styled.h1`
     font-weight: bold;
+    margin: 0;
 `;
 
 const Center = styled.div`
@@ -29,17 +31,17 @@ const Center = styled.div`
 `;
 
 const SearchContainer = styled.div`
+    flex: 1;
     border: 0.5px solid lightgray;
     display: flex;
-    align-itens: center;
+    align-items: center;
     margin-left: 25px;
-    margin-top: 20px;
-    margin-bottom: 20px;
     margin-right: 30px;
     padding: 5px;
 `;
 
 const Input = styled.input`
+    flex: 1;
     border: none;
 `;
 
@@ -48,6 +50,7 @@ const Right = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding-right: 10px;
 `;
 
 const MenuItem = styled.div`
