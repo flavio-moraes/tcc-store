@@ -39,3 +39,38 @@ export const categories = [
         title: "JEANS"
     },
 ];
+
+export const popularProducts = [
+    {
+        id: 1,
+        img: "https://source.unsplash.com/random/300x300?shoes"
+    },
+    {
+        id: 2,
+        img: "https://source.unsplash.com/random/300x300?socks"
+    },
+    {
+        id: 3,
+        img: "https://source.unsplash.com/random/300x300?pants"
+    },
+    {
+        id: 4,
+        img: "https://source.unsplash.com/random/300x300?hat"
+    },
+    {
+        id: 5,
+        img: "https://source.unsplash.com/random/300x300?top%20tank"
+    },
+    {
+        id: 6,
+        img: "https://source.unsplash.com/random/300x300?eyeglasses"
+    },
+    {
+        id: 7,
+        img: "https://source.unsplash.com/random/300x300?women%20bag"
+    },
+    {
+        id: 8,
+        img: "https://source.unsplash.com/random/300x300?jacket"
+    }
+];

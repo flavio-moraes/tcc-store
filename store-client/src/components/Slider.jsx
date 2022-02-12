@@ -26,7 +26,7 @@ const Arrow  = styled.div`
     bottom: 0;
     margin: auto;
     cursor: pointer;
-    opacity: 0.33;
+    opacity: 0.5;
     z-index: 2;
 `;
 
@@ -97,7 +97,7 @@ const Slider = () => {
             </Arrow>
             <Wrapper slideIndex={slideIndex}>
                 {sliderItems.map((item) => (
-                    <Slide bg={item.bg}>
+                    <Slide bg={item.bg} key={item.id}>
                         <ImgContainer>
                             <Image src={item.img}/>
                         </ImgContainer>
