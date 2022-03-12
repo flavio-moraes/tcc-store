@@ -3,6 +3,8 @@ import './App.css';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -25,7 +27,9 @@ function App() {
 
     //<Home/>
     //<ProductList/>
-    <ProductDetail/>
+    //<ProductDetail/>
+    //<Register/>
+    <Login/>
   );
 }
 
