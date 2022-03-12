@@ -10,7 +10,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 10px 20px;
     display: flex;
-    align-itens: center;
+    //align-items: center;
     justify-content: space-between;
 `;
 const Left = styled.div`
@@ -27,7 +27,7 @@ const Logo = styled.h1`
 const Center = styled.div`
     flex: 1;
     display: flex;
-    align-itens: center;
+    //align-items: center;
 `;
 
 const SearchContainer = styled.div`

@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
+import ProductList from './pages/ProductList';
+import ProductDetail from './pages/ProductDetail';
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
       </header>
     </div>*/
 
-    <Home/>
+    //<Home/>
+    //<ProductList/>
+    <ProductDetail/>
   );
 }
 

@@ -74,3 +74,9 @@ export const popularProducts = [
         img: "https://source.unsplash.com/random/300x300?jacket"
     }
 ];
+
+export const themeColors = {
+    footer: "#dcecf1",
+    buyButton: "#dcecf1",
+    buyButtonHighlight: "#b6e0ec"
+};
