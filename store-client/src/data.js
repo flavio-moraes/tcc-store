@@ -26,17 +26,20 @@ export const categories = [
     {
         id: 1,
         img: "https://source.unsplash.com/random/300x300?men%20shirt",
-        title: "CAMISETAS MASCULINAS"
+        title: "CAMISETAS MASCULINAS",
+        cat: "camiseta-masculina"
     },
     {
         id: 2,
         img: "https://source.unsplash.com/random/300x300?women%20shirt",
-        title: "CAMISETAS FEMININAS"
+        title: "CAMISETAS FEMININAS",
+        cat: "camiseta-feminina"
     },
     {
         id: 3,
         img: "https://source.unsplash.com/random/300x300?jeans",
-        title: "JEANS"
+        title: "JEANS",
+        cat: "jeans"
     },
 ];
 

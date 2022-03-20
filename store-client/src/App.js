@@ -5,8 +5,12 @@ import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Cart from './pages/Cart';
+import {BrowserRouter as Router, Switch, Route, Link as Lnk, Redirect} from "react-router-dom";
+
 
 function App() {
+  const userIsLogged = false;
   return (
     /*<div className="App">
       <header className="App-header">
@@ -29,7 +33,30 @@ function App() {
     //<ProductList/>
     //<ProductDetail/>
     //<Register/>
-    <Login/>
+    //<Login/>
+
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Home/>
+        </Route>
+        <Route path="/produtos/:category">
+          <ProductList/>
+        </Route>
+        <Route path="/produto/:id">
+          <ProductDetail/>
+        </Route>
+        <Route path="/carrinho">
+          <Cart/>
+        </Route>
+        <Route path="/login">
+          {userIsLogged ? <Redirect to="/"/> : <Login/>}
+        </Route>
+        <Route path="/registro">
+          {userIsLogged ? <Redirect to="/"/> : <Register/>}
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
