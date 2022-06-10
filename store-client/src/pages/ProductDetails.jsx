@@ -122,7 +122,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
-  const [size, setSizey] = useState("");
+  const [size, setSize] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {

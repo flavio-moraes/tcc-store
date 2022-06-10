@@ -4,9 +4,16 @@ import React from 'react'
 import styled from 'styled-components'
 import {useSelector} from "react-redux";
 import { Link } from 'react-router-dom';
+import { API_URL } from '../requestMethods';
+import Sidemenu from './Sidemenu';
 
 const Container = styled.div`
     height: 60px;
+    -webkit-box-shadow: 0px 0px 9px 3px rgba(41,41,41,.25);
+    -moz-box-shadow: 0px 0px 9px 3px rgba(41,41,41,.25);
+    box-shadow: 0px 0px 9px 3px rgba(41,41,41,.25);
+    position: relative;
+    z-index: 1;
 `;
 
 const Wrapper = styled.div`
@@ -15,10 +22,12 @@ const Wrapper = styled.div`
     //align-items: center;
     justify-content: space-between;
 `;
+
 const Left = styled.div`
     flex: 1;
     text-align: left;
     padding-left: 10px;
+    display: flex;
 `;
 
 const Logo = styled.h1`
@@ -45,6 +54,9 @@ const SearchContainer = styled.div`
 const Input = styled.input`
     flex: 1;
     border: none;
+    &:focus {
+        outline: none;
+    }
 `;
 
 const Right = styled.div`
@@ -64,25 +76,31 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
     const quantity = useSelector(state=>state.cart.quantity);
+    const user = useSelector((state) => state.user.info);
+
+    const logout = () => { //função a ser chamada pelo click do logout
+        window.open(API_URL+"/auth/logout", "_self");
+    };
 
     return (
         <Container>
             <Wrapper>
                 <Left>
+                    <Sidemenu/>
                     <Logo>
-                        Loja Virtual
+                        <Link to="/">Loja Virtual</Link>
                     </Logo>
                 </Left>
                 <Center>
                     <SearchContainer>
-                        <Input/>
+                        <Input placeholder="Qual produto você procura?"/>
                         <Search style={{color:"gray", fontSize:16}}/>
                     </SearchContainer>
                 </Center>
                 <Right>
-                    <MenuItem>REGISTRAR</MenuItem>
-                    <MenuItem>ENTRAR</MenuItem>
-                    <Link to="/cart">
+                    {user ? (<><MenuItem>Olá, {user.firstname}!</MenuItem><MenuItem onClick={logout}>LOGOUT</MenuItem></>)
+                    : <><MenuItem><Link to="/registrar">CADASTRAR</Link></MenuItem><MenuItem><Link to="/login">ENTRAR</Link></MenuItem></>}
+                    <Link to="/carrinho">
                         <MenuItem>
                             <Badge badgeContent={quantity} color="primary">
                                 <ShoppingCartOutlined/>
@@ -92,6 +110,9 @@ const Navbar = () => {
                 </Right>
             </Wrapper>
         </Container>
+        /*
+        {user ? (<MenuItem>user.name</MenuItem><MenuItem onClick={logout}>Logout</MenuItem>) : (<Link to="login">ENTRAR</Link>)}
+        */
     )
 }
 

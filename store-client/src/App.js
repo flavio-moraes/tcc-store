@@ -2,15 +2,65 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
-import ProductDetail from './pages/ProductDetail';
+import ProductDetails from './pages/ProductDetails';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
-import {BrowserRouter as Router, Switch, Route, Link as Lnk, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link as Lnk, Redirect, BrowserRouter, Routes, Navigate} from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { privateRequest } from './requestMethods';
+import { update } from './redux/userSlice';
 
 
 function App() {
-  const userIsLogged = false;
+  //const [user, setUser] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.info);
+
+useEffect(async () => {
+  //setLoading(false); return;
+  try {
+    const res = await privateRequest.get("/auth/session");
+    console.log(res);
+    dispatch(update(res.data));
+    setLoading(false);
+  } catch(err) {
+    console.log(err);
+    setLoading(false);
+  }
+}, []);
+
+/*
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true
+        }
+      }).then((response) => {
+        if (response.status === 200) return response.json();
+        throw new Error("Autenticação falhou.");
+      }).then((resObject) => {
+        setUser(resObject.user);
+      }).catch((err) => {
+        console.log(err);
+      });
+    };
+    getUser();
+  }, []);
+*/
+  console.log(user);
+
+  if (isLoading) {
+    return (<div>loading...</div>);
+  }
+
   return (
     /*<div className="App">
       <header className="App-header">
@@ -35,7 +85,7 @@ function App() {
     //<Register/>
     //<Login/>
 
-    <Router>
+    /*<Router>
       <Switch>
         <Route exact path="/">
           <Home/>
@@ -50,13 +100,28 @@ function App() {
           <Cart/>
         </Route>
         <Route path="/login">
-          {userIsLogged ? <Redirect to="/"/> : <Login/>}
+          {user ? <Redirect to="/"/> : <Login/>}
         </Route>
         <Route path="/registro">
-          {userIsLogged ? <Redirect to="/"/> : <Register/>}
+          {user ? <Redirect to="/"/> : <Register/>}
         </Route>
       </Switch>
-    </Router>
+    </Router>*/
+
+
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/produtos/:category" element={<ProductList />} />
+        <Route path="/produto/:id" element={<ProductDetails />} />
+        <Route path="/carrinho" element={<Cart />} />
+        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        <Route path="/registrar" element={user ? <Navigate to="/" /> : <Register />} />
+      </Routes>
+    </BrowserRouter>
+    //<Route path="/conta" element={user ? <Acount /> : <Navigate to="/login" />} />    exemplo de rota privada
+
+
   );
 }
 

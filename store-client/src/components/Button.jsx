@@ -13,11 +13,17 @@ const ButtonEl = styled.button`
         transition: all 0.5s ease;
     }
     transition: all 0.5s ease;
+
+    &:disabled{
+      background-color: gray;
+      cursor: wait;
+    }
 `;
 
-const Button = ({children}) => {
+const Button = (props) => {
+  const {children, ...others} = props;
   return (
-    <ButtonEl>{children}</ButtonEl>
+    <ButtonEl {...props}>{children}</ButtonEl>
   )
 }
 
