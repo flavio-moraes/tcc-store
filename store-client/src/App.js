@@ -11,6 +11,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { privateRequest } from './requestMethods';
 import { update } from './redux/userSlice';
+import Dashboard from './pages/dashboard/Dashboard';
+import List from './pages/dashboard/List';
+import Single from './pages/dashboard/Single';
+import New from './pages/dashboard/New';
 
 
 function App() {
@@ -18,6 +22,8 @@ function App() {
   const [isLoading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.info);
+  const userInputs = "";
+  const productInputs = "";
 
 useEffect(async () => {
   //setLoading(false); return;
@@ -117,6 +123,22 @@ useEffect(async () => {
         <Route path="/carrinho" element={<Cart />} />
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
         <Route path="/registrar" element={user ? <Navigate to="/" /> : <Register />} />
+
+        <Route path="/gerenciamento" element={user?.role !== "admin" && <Navigate to="/" />}>
+            <Route index element={<Dashboard />} />
+            <Route path="usuarios">
+              <Route index element={<List />} />
+              <Route path=":userId" element={<Single />} />
+              <Route path="novo" element={<New inputs={userInputs} title="Add New User" />} />
+            </Route>
+            <Route path="produtos">
+              <Route index element={<List />} />
+              <Route path=":productId" element={<Single />} />
+              <Route path="novo" element={<New inputs={productInputs} title="Add New Product" />} />
+            </Route>
+        </Route>
+
+        <Route path="*" element={<p>Página não encontrada: Erro 404!</p>} />
       </Routes>
     </BrowserRouter>
     //<Route path="/conta" element={user ? <Acount /> : <Navigate to="/login" />} />    exemplo de rota privada
