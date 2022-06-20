@@ -1,5 +1,15 @@
-body {
+
+*, *:after, *:before {
   margin: 0;
+  padding: 0;
+  /*box-sizing: border-box;*/
+  text-decoration: none;
+}
+
+body {
+  font-size: 100%;
+  list-style-type: none;
+
   font-family: 'Urbanist', sans-serif;
   /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,7 +20,6 @@ body {
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
 code {

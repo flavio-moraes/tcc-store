@@ -124,7 +124,7 @@ useEffect(async () => {
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
         <Route path="/registrar" element={user ? <Navigate to="/" /> : <Register />} />
 
-        <Route path="/gerenciamento" element={user?.role !== "admin" && <Navigate to="/" />}>
+        <Route path="/gerenciamento">
             <Route index element={<Dashboard />} />
             <Route path="usuarios">
               <Route index element={<List />} />
@@ -142,7 +142,7 @@ useEffect(async () => {
       </Routes>
     </BrowserRouter>
     //<Route path="/conta" element={user ? <Acount /> : <Navigate to="/login" />} />    exemplo de rota privada
-
+    //<Route path="/gerenciamento" element={user?.role !== "admin" && <Navigate to="/" />}>
 
   );
 }
