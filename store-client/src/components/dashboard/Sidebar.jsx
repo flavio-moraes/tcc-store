@@ -94,14 +94,14 @@ const Sidebar = () => {
                 </MenuItem>
             </Link>
             
-            <Link to="/usuarios">
+            <Link to="/gerenciamento/usuarios">
                 <MenuItem>
                     <PersonOutlineIcon style={iconStyle} />
                     <MenuItemLabel>Usuários</MenuItemLabel>
                 </MenuItem>
             </Link>
             
-            <Link to="/produtos">
+            <Link to="/gerenciamento/produtos">
                 <MenuItem>
                     <StoreIcon style={iconStyle} />
                     <MenuItemLabel>Produtos</MenuItemLabel>

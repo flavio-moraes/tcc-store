@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Datatable from '../../components/dashboard/Datatable';
 import Sidebar from '../../components/dashboard/Sidebar';
 
 const Container = styled.div`
@@ -6,9 +7,22 @@ const Container = styled.div`
     display: flex;
 `;
 
+const MainArea = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    //background-color: green;
+`;
+
+
 const List = () => {
   return (
-    <Container>List</Container>
+    <Container>
+      <Sidebar />
+      <MainArea>
+        <Datatable title="Lista de Usuários" />
+      </MainArea>
+    </Container>
   )
 }
 

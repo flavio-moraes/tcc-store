@@ -129,12 +129,12 @@ useEffect(async () => {
             <Route path="usuarios">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
-              <Route path="novo" element={<New inputs={userInputs} title="Add New User" />} />
+              <Route path="novo" element={<New inputs={userInputs} title="Adicionar Novo Usuário" />} />
             </Route>
             <Route path="produtos">
               <Route index element={<List />} />
               <Route path=":productId" element={<Single />} />
-              <Route path="novo" element={<New inputs={productInputs} title="Add New Product" />} />
+              <Route path="novo" element={<New inputs={productInputs} title="Adicionar Novo Produto" />} />
             </Route>
         </Route>
 
