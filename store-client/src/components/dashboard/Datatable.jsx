@@ -184,7 +184,7 @@ const Datatable = ({title}) => {
         { field: "id", headerName: "ID", width: 70 },
         {
           field: "user",
-          headerName: "User",
+          headerName: "Usuário",
           width: 230,
           renderCell: (params) => {
             return (
@@ -203,7 +203,7 @@ const Datatable = ({title}) => {
       
         {
           field: "age",
-          headerName: "Age",
+          headerName: "Idade",
           width: 100,
         },
         {
@@ -223,19 +223,19 @@ const Datatable = ({title}) => {
     const actionColumn = [
         {
           field: "action",
-          headerName: "Action",
+          headerName: "Ação",
           width: 200,
           renderCell: (params) => {
             return (
               <div className="cellAction">
                 <Link to="/users/test" style={{ textDecoration: "none" }}>
-                  <div className="viewButton">View</div>
+                  <div className="viewButton">Visualizar</div>
                 </Link>
                 <div
                   className="deleteButton"
                   onClick={() => handleDelete(params.row.id)}
                 >
-                  Delete
+                  Deletar
                 </div>
               </div>
             );
